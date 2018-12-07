@@ -1,0 +1,269 @@
+
+* working with git
+
+** Initial stage: preparing your local git repository
+#+BEGIN_SRC sh
+git init
+git clone $URL # this is if you want to clone or copy an online repository
+
+#+END_SRC
+
+** working with  your local git repository
+
+#+BEGIN_SRC sh
+
+git branch # have a look see into how many branches are there and on which branch you are on
+
+# This shows you the branches and the branch that you are on
+git log # this shows the different commits
+git commit # will commit changes if repository has changed else shows that the work space is clean
+
+git diff commit1 commit2 # difference or diff between two commits
+
+#+END_SRC
+
+#+BEGIN_SRC sh
+
+git branch
+
+#+END_SRC
+No branches; so how do you create a branch and then swith over to that other branch
+
+so you do
+#+BEGIN_SRC sh
+git branch
+
+#+END_SRC
+
+There is no other branches, time to create a new branch
+
+#+BEGIN_SRC sh
+git checkout -b mynewbranch
+
+#+END_SRC
+
+
+
+#+BEGIN_SRC sh
+git push origin mynewbranch;
+
+#+END_SRC
+
+Or rather what i do is
+#+BEGIN_SRC sh
+git push origin master
+
+# this prompts for your github username and password
+# this commits your local git state to online git repository
+
+#+END_SRC
+
+It actually tries to put my branch of codes to the github, hence prompts for the github password and all.
+
+we do not want that.
+#+BEGIN_SRC sh
+git checkout -b mynewbranch
+
+#+END_SRC
+
+This basically copied your branch into a new branch. you can make changes to this new branch as you like . your original branch is still untouched.
+
+
+When you are satisfied with this branch.
+
+How do you merge the two branches?
+
+Note that the previous branch that we left behind is like a restore point
+
+
+Although all those commits you made in the later branch were also restore points but it is like suppose you were wanting to take your project into two different directions, two seperate approaches, then you could have had these two seperate branches to play with and you do not have to worry about one colliding with the other.
+
+In my new branch, so i open a file willy nilly and changes, maybe some lines.
+
+Now how do i commit those changes.
+
+#+BEGIN_SRC sh
+git status  #: file has been modified
+git diff   #; shows the lines added or changed
+git diff --staged  #; nothing
+
+#+END_SRC
+
+Add the files that were changed to a staging area and then commit, i think
+#+BEGIN_SRC sh
+git add file_that_was_changed
+
+git diff
+
+git diff --staged
+
+#+END_SRC
+
+This shows content meaning the file has been added to the staging area, still it has not been commited
+#+BEGIN_SRC sh
+git commit #; this takes you to the editor, you enter a brief heading of what you just changed.
+git status #; clean , my branches are clean
+
+#+END_SRC
+
+Here let us clear the screen
+
+OK i am in a git repository
+
+Now i do 
+
+#+BEGIN_SRC sh
+git status  #; this shows me my workbench, there is nothing on the workbench.
+git diff    #; and git diff --staged
+
+#+END_SRC
+There are two placeholders in your workbench.
+Whenever you make changes to some file, they end up in
+#+BEGIN_SRC sh
+git diff
+
+#+END_SRC
+
+when you put those changed files to the staging area they go to
+#+BEGIN_SRC sh
+git diff --staged
+
+#+END_SRC
+
+when you are satisfied, you commit
+#+BEGIN_SRC sh
+git commit 
+
+#+END_SRC
+This clears your workbench
+
+so git diff and git diff --staged will both become clear.
+
+you do
+#+BEGIN_SRC sh
+git branch.
+
+#+END_SRC
+your project can be visualized as a tree,
+#+BEGIN_SRC sh
+git branch
+
+#+END_SRC
+
+Shows you how many clones of that tree are there, clones in the sense that their initial files are there but might have been edited in various ways.
+you do
+#+BEGIN_SRC sh
+git branch
+
+#+END_SRC
+There is only one tree called master.
+Say i want to do something
+I create a copy or branch of my original master branch
+#+BEGIN_SRC sh
+git checkout -b newbranch
+
+#+END_SRC
+Now git branch; shows there are two
+You are in the other branch now.
+
+You just play with the files, make changes
+#+BEGIN_SRC sh
+git status # is something changed in your git directory and is not yet accounted for 
+git add changedfile # add that changed file to commit
+git diff # is something still unaccounted in your git directory? no.
+git diff --staged # files that were added but not yet committed. this is the staging area. not yet commited.
+git commit # all those files you added (to the staging area) are committed with this command
+
+#+END_SRC
+Check these again to see if any file is still unaccounted for
+#+BEGIN_SRC sh
+git status # this would show the workspace is clean
+git diff # this should have no output
+git diff --staged # this should have no output
+
+#+END_SRC
+You just made some changes
+Now let us switch branches again
+#+BEGIN_SRC sh
+
+git checkout master
+
+# you are on master branch now
+#+END_SRC
+Now make other changes
+#+BEGIN_SRC sh
+git log # make changes to files; 
+git status
+git diff  
+git diff --staged #; 
+git add changedfile #; 
+git commit  #; that is it commits made
+
+#+END_SRC
+To make sure your workbench is clean
+#+BEGIN_SRC sh
+git diff 
+git diff --staged
+
+#+END_SRC
+Say we want to make yet another branch
+#+BEGIN_SRC sh
+git checkout -b myothernewbranch
+#i am now on that other branch.
+
+#+END_SRC
+
+Make changes to files; 
+#+BEGIN_SRC sh
+git diff
+git diff --staged
+git add changedfile
+git diff 
+git diff --staged
+git commit
+
+#+END_SRC
+
+So you have three independent clones of your original project.
+You can create yet another branch to it.
+
+In a branch or clone of the tree you can jump forward and behind with diff commits.
+
+** push your local git commits to online repository
+All of this is good and is good for local work but then you might be tempted to push the changes to your github online
+#+BEGIN_SRC sh
+git push origin mynewbranch
+#or 
+git put origin master # after making changes in branches and merging with the master branch
+
+#+END_SRC
+
+maybe not;
+
+First you work locally on the mynewbranch and come to such a state that the mynewbranch is perfection,
+so you want to merge this branch with the master branch, now intervening magical steps, i have no idea how to do this.
+
+Merge the mynewbranch with master
+
+then
+#+BEGIN_SRC sh
+git push origin master
+
+#+END_SRC
+
+This is the final step i guess.
+
+Locally you would not need to do any git push origin stuff.
+
+This git merging stuff is complex, just from the thought of it.
+
+Merging two branches
+#+BEGIN_SRC sh
+git branch # show the branches
+git checkout a #(you will switch to branch a)
+git merge b #(this will merge all changes from branch b into branch a)
+git commit -a #(this will commit your changes)    
+git checkout a #(you will switch to branch a)
+git merge b #(this will merge all changes from branch b into branch a)
+
+#+END_SRC
