@@ -267,3 +267,23 @@ git checkout a #(you will switch to branch a)
 git merge b #(this will merge all changes from branch b into branch a)
 
 #+END_SRC
+
+* Some more help
+
+#+BEGIN_SRC sh
+man -k git
+
+# look through those entries as you like
+
+man gittutorial
+man gittutorial-2
+man gitworkflows
+man gitglossary
+man gitcore-tutorial
+
+
+#+END_SRC
+
+* setting up the default editor and your email id
+
+To be populated
