@@ -287,3 +287,20 @@ man gitcore-tutorial
 * setting up the default editor and your email id
 
 To be populated
+
+#+BEGIN_SRC sh
+
+git config --global core.editor emacs
+
+git config --global user.name "whatever"
+
+git config --global user.email whatever@example.com
+
+ls ~/.gitconfig
+# if you botched up
+rm ~/.gitconfig 
+# and maybe start over
+
+man git-config
+
+#+END_SRC
